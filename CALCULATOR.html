@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+    <input type ="text" id ="calcDisplay" disabled ><br>
+    <button onclick="formatPati()">C</button>
+    <button onclick="vortex('(')">(</button>
+    <button onclick="vortex(')')">)</button>
+    <button onclick="vortex('^')">^</button>
+    <button onclick="vortex('sqrt(')">√</button><br>
+    <button onclick="vortex('9')">9</button>
+    <button onclick="vortex('8')">8</button>
+    <button onclick="vortex('7')">7</button>
+    <button onclick="vortex('/')">/</button><br>
+    <button onclick="vortex('6')">6</button>
+    <button onclick="vortex('5')">5</button>
+    <button onclick="vortex('4')">4</button>
+    <button onclick="vortex('*')">*</button><br>
+    <button onclick="vortex('3')">3</button>
+    <button onclick="vortex('2')">2</button>
+    <button onclick="vortex('1')">1</button>
+    <button onclick="vortex('-')">-</button><br>
+    <button onclick="vortex('0')">0</button>
+    <button onclick="vortex('.')">.</button>
+    <button onclick="tisovezimenezi()">=</button>
+    <button onclick="vortex('+')">+</button><br>
+    <button onclick="vortex('sin(')">sin</button>
+    <button onclick="vortex('cos(')">cos</button>
+    <button onclick="vortex('tan(')">tan</button>
+
+    <script>
+    function vortex(num){
+        const vortexShow = document.getElementById('calcDisplay');
+        vortexShow.value += num;
+    }
+
+    function tisovezimenezi(){
+        const variabo = document.getElementById('calcDisplay');
+        let expression = variabo.value;
+
+        expression = expression.replace(/\^/g, '**');
+        expression = expression.replace(/sin\(/g, 'sinDeg(');
+        expression = expression.replace(/cos\(/g, 'cosDeg(');
+        expression = expression.replace(/tan\(/g, 'tanDeg(');
+        expression = expression.replace(/sqrt\(/g, 'Math.sqrt(');
+
+        try {
+            variabo.value = eval(expression);
+        } catch (error) {
+            variabo.value = 'Error';
+        }
+    }
+
+    function sinDeg(value){
+        return Math.sin(value * Math.PI / 180);
+    }
+
+    function cosDeg(value){
+        return Math.cos(value * Math.PI / 180);
+    }
+
+    function tanDeg(value){
+        return Math.tan(value * Math.PI / 180);
+    }
+
+    function formatPati(){
+        const variabo = document.getElementById('calcDisplay');
+        variabo.value = '';
+    }
+    </script>
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e7d085;
+    }
+
+    #calcDisplay {
+        width: 70%;
+        padding: 10px;
+        font-size: 12px;
+        text-align: right;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 10%;
+        padding: 10px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+ </style>   
+    
+
+
+    </body>
+
+
+</html>
