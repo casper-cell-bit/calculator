@@ -35,6 +35,10 @@
         vortexShow.value += num;
     }
 
+    function bomdas(expression){
+        return Function('"use strict"; return (' + expression + ')')();
+    }
+
     function tisovezimenezi(){
         const variabo = document.getElementById('calcDisplay');
         let expression = variabo.value;
@@ -46,7 +50,7 @@
         expression = expression.replace(/sqrt\(/g, 'Math.sqrt(');
 
         try {
-            variabo.value = eval(expression);
+                        variabo.value = bomdas(expression);
         } catch (error) {
             variabo.value = 'Error';
         }
